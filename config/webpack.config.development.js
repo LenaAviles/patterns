@@ -1,8 +1,26 @@
 const path = require('path');
+const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const pluginsOptions = [];
+const pagesPath = __dirname + './../src/pages';
+const pages = glob.sync(pagesPath + '/**/*.pug');
+
+pages.forEach(function (file) {
+    let base = path.basename(file, '.pug');
+    const relative = path.relative(pagesPath, file);
+    
+    pluginsOptions.push(
+        new HtmlWebpackPlugin({
+            filename: './' + base + '.html',
+            template: './src/pages/' + relative,
+            inject: true
+        })
+    );
+});
 
 module.exports = {
     entry: './src/index.js',
@@ -50,6 +68,10 @@ module.exports = {
                   name: 'images/[name].[ext]',
                 },
             },
+            { 
+                test: /\.pug$/,
+                use: ['pug-loader']
+            },
         ]
     },
     plugins: [
@@ -57,11 +79,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'styles/[name].css',
         }),
-        new HtmlWebpackPlugin({
-            inject: false,
-            hash: true,
-            template: './src/index.html',
-            filename: 'index.html'
-        })
+        ...pluginsOptions,
     ]
 }

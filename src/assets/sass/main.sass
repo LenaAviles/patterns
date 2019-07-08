@@ -1,10 +1,14 @@
 @charset "utf-8"
 @import "../../../node_modules/bulma/bulma.sass"
+@import ./mixins.sass
 
-.navbar__logo
+.navbar__logo    
     position: absolute
     width: 300px
     height: 160px
+
+.navbar__logo-img
+    +box-shadow
 
 .navbar__menu
     padding-left: 300px

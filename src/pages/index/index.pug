@@ -1,0 +1,41 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(http-equiv='x-ua-compatible' content='ie=edge')
+  meta(name='description' content='This is a boilerplate for a Bulma CSS project')
+  meta(name='keywords' content='HTML, CSS, JS, Sass, JavaScript, framework, Bulma CSS, front-end, frontend, web development')
+  meta(name='author' content='Lena Aviles')
+  title JS Patterns
+
+  link(rel='shortcut icon' href='images/favicon.ico')
+  
+  link(rel='stylesheet' href='styles/main.css')
+  
+nav.navbar.is-white(role='navigation' aria-label='main navigation')
+  .navbar-brand
+    a.navbar__logo(href='#')
+      img.navbar__logo-img(src='images/js-patterns.jpg')
+    a.navbar-burger.burger(role='button' aria-label='menu' aria-expanded='false' data-target='navbarBasicExample')
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+  #navbarBasicExample.navbar-menu.navbar__menu
+    .navbar-start
+      a.navbar-item
+        | Home
+      a.navbar-item
+        | Documentation
+      .navbar-item.has-dropdown.is-hoverable
+        a.navbar-link
+          | More
+        .navbar-dropdown
+          a.navbar-item
+            | About
+          a.navbar-item
+            | Jobs
+          a.navbar-item
+            | Contact
+          hr.navbar-divider
+          a.navbar-item
+            | Report an issue
